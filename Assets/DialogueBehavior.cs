@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class DialogueBehavior : MonoBehaviour
 {
@@ -64,6 +65,11 @@ public class DialogueBehavior : MonoBehaviour
                 else if (spriteRender.sprite == dialogueSprite8)
                 {
                     spriteRender.sprite = dialogueSprite9;
+                }
+
+                else if (spriteRender.sprite == dialogueSprite9)
+                {
+                    SceneManager.LoadScene("Level2", LoadSceneMode.Single);
                 }
             }
         }

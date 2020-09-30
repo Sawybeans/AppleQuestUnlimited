@@ -6,7 +6,7 @@ public class GroundCheck : MonoBehaviour
 {
     public bool isGrounded;
     public bool isGroundedBounce;
-    public Object canCollide;
+    public bool isGroundedGrav;
 
     public void OnTriggerStay2D(Collider2D other)
     {
@@ -20,18 +20,28 @@ public class GroundCheck : MonoBehaviour
         {
             isGroundedBounce = true;
         }
+
+        else if (other.gameObject.CompareTag("Gravity"))
+        {
+            isGroundedGrav = true;
+        }
     }
 
     public void OnTriggerExit2D(Collider2D other)
     {
-        if (other.gameObject.CompareTag("Ground"))
+        if (other.gameObject.CompareTag("Bounce"))
         {
             isGrounded = false;
         }
 
-        if (other.gameObject.CompareTag("Bounce"))
+        else if (other.gameObject.CompareTag("Ground"))
         {
-            isGrounded = false;
+            isGroundedBounce = false;
+        }
+
+        else if (other.gameObject.CompareTag("Gravity"))
+        {
+            isGroundedGrav = false;
         }
     }
 }

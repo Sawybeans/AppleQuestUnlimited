@@ -17,6 +17,7 @@ TagManager:
   - Dead
   - Door9
   - Door10
+  - Gravity
   layers:
   - Default
   - TransparentFX
