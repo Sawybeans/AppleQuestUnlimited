@@ -130,17 +130,27 @@ public class SimplePhysicsController2D : MonoBehaviour
         //Determine whether or not the player is above a gravity well using a raycast
         //If true, set gravity above to gravityWell, if false leave it as is
 
+        RaycastHit2D hit;
         Ray myRay = new Ray(transform.position, Vector2.down);
         Debug.DrawRay(myRay.origin, myRay.direction, Color.white);
 
         if (Physics2D.Raycast(myRay.origin, myRay.direction, maxDistance))
         {
-            overWell = true;
+
+            if (Physics.Raycast (myRay, out hit))
+            {
+                if (hit.collider.tag == "Gravity")
+                {
+                    overWell = true;
+                }
+                else
+                {
+                    overWell = false;
+                }
+            }
+            
         }
-        else
-        {
-            overWell = false;
-        }
+        
 
         
         //Left and right inputs
