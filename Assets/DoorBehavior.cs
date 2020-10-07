@@ -22,6 +22,7 @@ public class DoorBehavior : MonoBehaviour
     public Camera camera1;
     public Camera camera2;
 
+    public int lastDoor = 0;
     public GameObject me;
     public EndingInit ending;
 
@@ -42,6 +43,7 @@ public class DoorBehavior : MonoBehaviour
             {
                 print("Travel");
                 self.transform.position = door2.position;
+                lastDoor = 2;
             }
 
         }
@@ -67,6 +69,7 @@ public class DoorBehavior : MonoBehaviour
             {
                 print("Travel");
                 self.transform.position = door4.position;
+                lastDoor = 4;
             }
         }
 
@@ -91,6 +94,7 @@ public class DoorBehavior : MonoBehaviour
             {
                 print("Travel");
                 self.transform.position = door6.position;
+                lastDoor = 6;
             }
         }
 
@@ -102,7 +106,7 @@ public class DoorBehavior : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.E))
             {
                 print("Travel");
-                self.transform.position = door6.position;
+                self.transform.position = door5.position;
             }
         }
 
@@ -115,6 +119,7 @@ public class DoorBehavior : MonoBehaviour
             {
                 print("Travel");
                 self.transform.position = door8.position;
+                lastDoor = 8;
             }
         }
 
@@ -139,6 +144,7 @@ public class DoorBehavior : MonoBehaviour
             {
                 print("Travel");
                 self.transform.position = door10.position;
+                lastDoor = 10;
             }
         }
 
@@ -156,7 +162,32 @@ public class DoorBehavior : MonoBehaviour
 
         if (other.gameObject.CompareTag("Dead"))
         {
-            self.transform.position = door8.position;
+            
+            if (lastDoor == 2)
+            {
+                self.transform.position = door2.position;
+            }
+
+            else if (lastDoor == 4)
+            {
+                self.transform.position = door4.position;
+            }
+
+            else if (lastDoor == 6)
+            {
+                self.transform.position = door6.position;
+            }
+
+            else if (lastDoor == 8)
+            {
+                self.transform.position = door8.position;
+            }
+
+            else if (lastDoor == 10)
+            {
+                self.transform.position = door10.position;
+            }
+            
         }
     }
 

@@ -11,13 +11,21 @@ public class SimplePhysicsController2D : MonoBehaviour
     public GroundCheck groundCheckScript;
     public EndingInit ending;
 
+    //Gravity variables
     public float gravityInAir;
     public float gravityOnGround;
 
+    //Gravity well raycast variables
     public float maxDistance = 1f;
     public float gravityWell;
+    public LayerMask myLayerMask;
 
+    //Various ground checks
     public bool overWell = false;
+    public bool onBounce = false;
+    public bool onGround = false;
+    public bool onWell = false;
+    public bool canJump = false;
 
     // Update is called once per frame
     void Update()
@@ -26,7 +34,13 @@ public class SimplePhysicsController2D : MonoBehaviour
         //If the player is on the ground
         if (groundCheckScript.isGrounded == true)
         {
-            
+
+            onGround = true;
+            onBounce = false;
+            onWell = false;
+
+            canJump = true;
+
             //If the player presses space, increase the upward velocity by the set jump speed
             if (Input.GetKeyDown(KeyCode.Space))
             {
@@ -45,8 +59,16 @@ public class SimplePhysicsController2D : MonoBehaviour
             
         }
 
+        //Same as the last one, just for the bounce pads
         else if (groundCheckScript.isGroundedBounce == true)
         {
+
+            onGround = false;
+            onBounce = true;
+            onWell = false;
+
+            canJump = true;
+
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 thisRigidbody2D.AddForce(Vector2.up * bounceForce, ForceMode2D.Impulse);
@@ -63,8 +85,15 @@ public class SimplePhysicsController2D : MonoBehaviour
             }
         }
 
+        //Same as the last two, just for the gravity wells
         else if (groundCheckScript.isGroundedGrav == true)
         {
+
+            onGround = false;
+            onBounce = false;
+            onWell = true;
+
+            canJump = true;
 
             if (Input.GetKeyDown(KeyCode.Space))
             {
@@ -86,6 +115,18 @@ public class SimplePhysicsController2D : MonoBehaviour
         //Same with in-air
         if (groundCheckScript.isGrounded == false)
         {
+
+            onGround = false;
+            onBounce = false;
+            onWell = false;
+
+            canJump = false;
+
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                thisRigidbody2D.AddForce(Vector2.up * 0, ForceMode2D.Impulse);
+            }
+
             if (overWell == true)
             {
                 thisRigidbody2D.gravityScale = gravityWell;
@@ -97,8 +138,21 @@ public class SimplePhysicsController2D : MonoBehaviour
             }
         }
 
+        //Not on bounce pad
         if (groundCheckScript.isGroundedBounce == false)
         {
+
+            onGround = false;
+            onBounce = false;
+            onWell = false;
+
+            canJump = false;
+
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                thisRigidbody2D.AddForce(Vector2.up * 0, ForceMode2D.Impulse);
+            }
+
             if (overWell == true)
             {
                 thisRigidbody2D.gravityScale = gravityWell;
@@ -110,8 +164,21 @@ public class SimplePhysicsController2D : MonoBehaviour
             }
         }
 
+        //Not on gravity well
         if (groundCheckScript.isGroundedGrav == false)
         {
+
+            onGround = false;
+            onBounce = false;
+            onWell = false;
+
+            canJump = false;
+
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                thisRigidbody2D.AddForce(Vector2.up * 0, ForceMode2D.Impulse);
+            }
+
             if (overWell == true)
             {
                 thisRigidbody2D.gravityScale = gravityWell;
@@ -130,25 +197,28 @@ public class SimplePhysicsController2D : MonoBehaviour
         //Determine whether or not the player is above a gravity well using a raycast
         //If true, set gravity above to gravityWell, if false leave it as is
 
-        RaycastHit2D hit;
+        
         Ray myRay = new Ray(transform.position, Vector2.down);
         Debug.DrawRay(myRay.origin, myRay.direction, Color.white);
+
+        RaycastHit2D hit = Physics2D.Raycast(myRay.origin, myRay.direction, maxDistance, myLayerMask);
 
         if (Physics2D.Raycast(myRay.origin, myRay.direction, maxDistance))
         {
 
-            if (Physics.Raycast (myRay, out hit))
+            if (hit.collider != null && hit.collider.gameObject.CompareTag("Gravity"))
             {
                 if (hit.collider.tag == "Gravity")
                 {
                     overWell = true;
                 }
-                else
-                {
-                    overWell = false;
-                }
+                
             }
-            
+            else
+            {
+                overWell = false;
+            }
+
         }
         
 

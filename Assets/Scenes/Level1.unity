@@ -944,14 +944,21 @@ MonoBehaviour:
   thisSprite: {fileID: 182941526}
   thisRigidbody2D: {fileID: 182941523}
   force: 50
-  bounceForce: 100
+  bounceForce: 150
   groundCheckScript: {fileID: 1612152303}
   ending: {fileID: 0}
-  gravityInAir: 8
+  gravityInAir: 10
   gravityOnGround: 1
   maxDistance: 2
   gravityWell: 30
+  myLayerMask:
+    serializedVersion: 2
+    m_Bits: 0
   overWell: 0
+  onBounce: 0
+  onGround: 0
+  onWell: 0
+  canJump: 0
 --- !u!58 &182941525
 CircleCollider2D:
   m_ObjectHideFlags: 0
