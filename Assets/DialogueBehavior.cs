@@ -71,6 +71,8 @@ public class DialogueBehavior : MonoBehaviour
                 {
                     SceneManager.LoadScene("Level2", LoadSceneMode.Single);
                 }
+
+                //^ Gotta figure out how to make this work for each level, might just end up having it right at the very end of the game, with the last doors of each level just moving you on to the next one.
             }
         }
     }

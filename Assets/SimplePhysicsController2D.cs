@@ -34,7 +34,7 @@ public class SimplePhysicsController2D : MonoBehaviour
         //If the player is on the ground
         if (groundCheckScript.isGrounded == true)
         {
-
+            //Truly baffled by what could be causing this to not work
             onGround = true;
             onBounce = false;
             onWell = false;
