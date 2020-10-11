@@ -8,6 +8,8 @@ public class SimplePhysicsController2D : MonoBehaviour
     public float force = 10f;
     public float bounceForce = 70f;
 
+    public AudioSource jumpSound;
+
     public GroundCheck groundCheckScript;
     public EndingInit ending;
 
@@ -45,6 +47,7 @@ public class SimplePhysicsController2D : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 thisRigidbody2D.AddForce(Vector2.up * force, ForceMode2D.Impulse);
+                jumpSound.Play();
             }
 
             //If the player is over a gravity well, increase the gravity
@@ -72,6 +75,7 @@ public class SimplePhysicsController2D : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 thisRigidbody2D.AddForce(Vector2.up * bounceForce, ForceMode2D.Impulse);
+                jumpSound.Play();
             }
 
             if (overWell == true)
@@ -98,6 +102,7 @@ public class SimplePhysicsController2D : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 thisRigidbody2D.AddForce(Vector2.up * force, ForceMode2D.Impulse);
+                jumpSound.Play();
             }
 
             if (overWell == true)

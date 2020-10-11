@@ -1,9 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class DoorBehavior : MonoBehaviour
 {
+
+    public AudioSource doorSound;
 
     public bool atDoor = false;
     public Transform self;
@@ -32,6 +35,7 @@ public class DoorBehavior : MonoBehaviour
         camera2.enabled = false;
     }
 
+
     public void OnTriggerStay2D(Collider2D other)
     {
         if (other.gameObject.CompareTag("Door1"))
@@ -44,6 +48,7 @@ public class DoorBehavior : MonoBehaviour
                 print("Travel");
                 self.transform.position = door2.position;
                 lastDoor = 2;
+                doorSound.Play();
             }
 
         }
@@ -57,6 +62,7 @@ public class DoorBehavior : MonoBehaviour
             {
                 print("Travel");
                 self.transform.position = door1.position;
+                doorSound.Play();
             }
         }
 
@@ -70,6 +76,7 @@ public class DoorBehavior : MonoBehaviour
                 print("Travel");
                 self.transform.position = door4.position;
                 lastDoor = 4;
+                doorSound.Play();
             }
         }
 
@@ -82,6 +89,7 @@ public class DoorBehavior : MonoBehaviour
             {
                 print("Travel");
                 self.transform.position = door3.position;
+                doorSound.Play();
             }
         }
 
@@ -95,6 +103,7 @@ public class DoorBehavior : MonoBehaviour
                 print("Travel");
                 self.transform.position = door6.position;
                 lastDoor = 6;
+                doorSound.Play();
             }
         }
 
@@ -107,6 +116,7 @@ public class DoorBehavior : MonoBehaviour
             {
                 print("Travel");
                 self.transform.position = door5.position;
+                doorSound.Play();
             }
         }
 
@@ -120,6 +130,7 @@ public class DoorBehavior : MonoBehaviour
                 print("Travel");
                 self.transform.position = door8.position;
                 lastDoor = 8;
+                doorSound.Play();
             }
         }
 
@@ -132,6 +143,7 @@ public class DoorBehavior : MonoBehaviour
             {
                 print("Travel");
                 self.transform.position = door7.position;
+                doorSound.Play();
             }
         }
 
@@ -145,6 +157,7 @@ public class DoorBehavior : MonoBehaviour
                 print("Travel");
                 self.transform.position = door10.position;
                 lastDoor = 10;
+                doorSound.Play();
             }
         }
 
@@ -157,6 +170,7 @@ public class DoorBehavior : MonoBehaviour
             {
                 print("Travel");
                 self.transform.position = door9.position;
+                doorSound.Play();
             }
         }
 
