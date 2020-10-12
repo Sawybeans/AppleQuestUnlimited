@@ -7,6 +7,7 @@ public class DoorBehavior : MonoBehaviour
 {
 
     public AudioSource doorSound;
+    public Rigidbody2D protagSpeed;
 
     public bool atDoor = false;
     public Transform self;
@@ -49,6 +50,7 @@ public class DoorBehavior : MonoBehaviour
                 self.transform.position = door2.position;
                 lastDoor = 2;
                 doorSound.Play();
+                protagSpeed.velocity = Vector3.zero;
             }
 
         }
@@ -63,6 +65,7 @@ public class DoorBehavior : MonoBehaviour
                 print("Travel");
                 self.transform.position = door1.position;
                 doorSound.Play();
+                protagSpeed.velocity = Vector3.zero;
             }
         }
 
@@ -77,6 +80,7 @@ public class DoorBehavior : MonoBehaviour
                 self.transform.position = door4.position;
                 lastDoor = 4;
                 doorSound.Play();
+                protagSpeed.velocity = Vector3.zero;
             }
         }
 
@@ -90,6 +94,7 @@ public class DoorBehavior : MonoBehaviour
                 print("Travel");
                 self.transform.position = door3.position;
                 doorSound.Play();
+                protagSpeed.velocity = Vector3.zero;
             }
         }
 
@@ -104,6 +109,7 @@ public class DoorBehavior : MonoBehaviour
                 self.transform.position = door6.position;
                 lastDoor = 6;
                 doorSound.Play();
+                protagSpeed.velocity = Vector3.zero;
             }
         }
 
@@ -117,6 +123,7 @@ public class DoorBehavior : MonoBehaviour
                 print("Travel");
                 self.transform.position = door5.position;
                 doorSound.Play();
+                protagSpeed.velocity = Vector3.zero;
             }
         }
 
@@ -131,6 +138,7 @@ public class DoorBehavior : MonoBehaviour
                 self.transform.position = door8.position;
                 lastDoor = 8;
                 doorSound.Play();
+                protagSpeed.velocity = Vector3.zero;
             }
         }
 
@@ -144,6 +152,7 @@ public class DoorBehavior : MonoBehaviour
                 print("Travel");
                 self.transform.position = door7.position;
                 doorSound.Play();
+                protagSpeed.velocity = Vector3.zero;
             }
         }
 
@@ -158,6 +167,9 @@ public class DoorBehavior : MonoBehaviour
                 self.transform.position = door10.position;
                 lastDoor = 10;
                 doorSound.Play();
+                protagSpeed.velocity = Vector3.zero;
+
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
             }
         }
 
@@ -171,6 +183,7 @@ public class DoorBehavior : MonoBehaviour
                 print("Travel");
                 self.transform.position = door9.position;
                 doorSound.Play();
+                protagSpeed.velocity = Vector3.zero;
             }
         }
 
@@ -179,26 +192,31 @@ public class DoorBehavior : MonoBehaviour
             
             if (lastDoor == 2)
             {
+                protagSpeed.velocity = Vector3.zero;
                 self.transform.position = door2.position;
             }
 
             else if (lastDoor == 4)
             {
+                protagSpeed.velocity = Vector3.zero;
                 self.transform.position = door4.position;
             }
 
             else if (lastDoor == 6)
             {
+                protagSpeed.velocity = Vector3.zero;
                 self.transform.position = door6.position;
             }
 
             else if (lastDoor == 8)
             {
+                protagSpeed.velocity = Vector3.zero;
                 self.transform.position = door8.position;
             }
 
             else if (lastDoor == 10)
             {
+                protagSpeed.velocity = Vector3.zero;
                 self.transform.position = door10.position;
             }
             

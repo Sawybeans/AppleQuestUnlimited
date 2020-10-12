@@ -1055,6 +1055,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   doorSound: {fileID: 489409372}
+  protagSpeed: {fileID: 182941523}
   atDoor: 0
   self: {fileID: 182941527}
   door1: {fileID: 753335882}
@@ -1471,7 +1472,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 12ab2c48ff6e8b84faeb44bc94b38af8, type: 3}
+  m_audioClip: {fileID: 8300000, guid: fefbb2917efde3c44a16ec4c13216044, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -2182,7 +2183,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: a928cd9bb6e2b3a4eac5f50d77ca6a9c, type: 3}
+  m_audioClip: {fileID: 8300000, guid: f5482f36987b56e46b67563b19978b30, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -7550,7 +7551,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 0f09e72acb1cf504e9fc90f86867906e, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 90ea2e6c075eb4c4db920cdf71c9fc9a, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1

@@ -47,6 +47,7 @@ public class SimplePhysicsController2D : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 thisRigidbody2D.AddForce(Vector2.up * force, ForceMode2D.Impulse);
+                jumpSound.pitch = (Random.Range(.85f, 1.3f));
                 jumpSound.Play();
             }
 
@@ -75,6 +76,7 @@ public class SimplePhysicsController2D : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 thisRigidbody2D.AddForce(Vector2.up * bounceForce, ForceMode2D.Impulse);
+                jumpSound.pitch = (Random.Range(.85f, 1.3f));
                 jumpSound.Play();
             }
 
@@ -102,6 +104,7 @@ public class SimplePhysicsController2D : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 thisRigidbody2D.AddForce(Vector2.up * force, ForceMode2D.Impulse);
+                jumpSound.pitch = (Random.Range(.85f, 1.3f));
                 jumpSound.Play();
             }
 
