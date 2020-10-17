@@ -164,8 +164,6 @@ public class DoorBehavior : MonoBehaviour
             if (Input.GetKey(KeyCode.E))
             {
                 print("Travel");
-                self.transform.position = door10.position;
-                lastDoor = 10;
                 doorSound.Play();
                 protagSpeed.velocity = Vector3.zero;
 

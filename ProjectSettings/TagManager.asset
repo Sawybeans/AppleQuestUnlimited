@@ -18,6 +18,8 @@ TagManager:
   - Door9
   - Door10
   - Gravity
+  - Wall
+  - Ceiling
   layers:
   - Default
   - TransparentFX
@@ -28,7 +30,7 @@ TagManager:
   - 
   - 
   - Grav
-  - 
+  - Platform
   - 
   - 
   - 

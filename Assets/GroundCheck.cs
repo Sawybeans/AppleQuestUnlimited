@@ -11,18 +11,17 @@ public class GroundCheck : MonoBehaviour
     public void OnTriggerEnter2D(Collider2D other)
     {
 
-        print(other.gameObject.name);
         if (other.gameObject.CompareTag("Ground")) 
         {
             isGrounded = true;
         }
 
-        else if (other.gameObject.CompareTag("Bounce"))
+        if (other.gameObject.CompareTag("Bounce"))
         {
             isGroundedBounce = true;
         }
 
-        else if (other.gameObject.CompareTag("Gravity"))
+        if (other.gameObject.CompareTag("Gravity"))
         {
             isGroundedGrav = true;
         }
@@ -44,12 +43,12 @@ public class GroundCheck : MonoBehaviour
             isGrounded = false;
         }
 
-        else if (other.gameObject.CompareTag("Ground"))
+        if (other.gameObject.CompareTag("Ground"))
         {
             isGroundedBounce = false;
         }
 
-        else if (other.gameObject.CompareTag("Gravity"))
+        if (other.gameObject.CompareTag("Gravity"))
         {
             isGroundedGrav = false;
         }

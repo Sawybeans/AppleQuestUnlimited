@@ -7,6 +7,8 @@ public class DialogueBehavior : MonoBehaviour
 {
     public EndingInit end;
 
+    public Animator talking;
+
     public SpriteRenderer spriteRender;
     public Sprite dialogueSprite1;
     public Sprite dialogueSprite2;
@@ -20,45 +22,60 @@ public class DialogueBehavior : MonoBehaviour
 
     public GameObject hint;
 
+
+    public void Start()
+    {
+        talking = gameObject.GetComponent<Animator>();
+    }
+
     public void Update()
     {
         if (end.end == true)
         {
+            talking.speed = 1;
+
             if (Input.GetKeyDown(KeyCode.E))
             {
                 if (spriteRender.sprite == dialogueSprite1)
                 {
+                    talking.speed = 0;
                     Destroy(hint);
                     spriteRender.sprite = dialogueSprite2;
                 }
 
                 else if (spriteRender.sprite == dialogueSprite2)
                 {
+                    talking.speed = 1;
                     spriteRender.sprite = dialogueSprite3;
                 }
 
                 else if (spriteRender.sprite == dialogueSprite3)
                 {
+                    talking.speed = 0;
                     spriteRender.sprite = dialogueSprite4;
                 }
 
                 else if (spriteRender.sprite == dialogueSprite4)
                 {
+                    talking.speed = 1;
                     spriteRender.sprite = dialogueSprite5;
                 }
 
                 else if (spriteRender.sprite == dialogueSprite5)
                 {
+                    talking.speed = 0;
                     spriteRender.sprite = dialogueSprite6;
                 }
 
                 else if (spriteRender.sprite == dialogueSprite6)
                 {
+                    talking.speed = 1;
                     spriteRender.sprite = dialogueSprite7;
                 }
 
                 else if (spriteRender.sprite == dialogueSprite7)
                 {
+                    talking.speed = 0;
                     spriteRender.sprite = dialogueSprite8;
                 }
 
@@ -66,13 +83,6 @@ public class DialogueBehavior : MonoBehaviour
                 {
                     spriteRender.sprite = dialogueSprite9;
                 }
-
-                else if (spriteRender.sprite == dialogueSprite9)
-                {
-                    SceneManager.LoadScene("Level2", LoadSceneMode.Single);
-                }
-
-                //^ Gotta figure out how to make this work for each level, might just end up having it right at the very end of the game, with the last doors of each level just moving you on to the next one.
             }
         }
     }

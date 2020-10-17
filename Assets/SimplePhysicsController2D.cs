@@ -20,7 +20,11 @@ public class SimplePhysicsController2D : MonoBehaviour
     //Gravity well raycast variables
     public float maxDistance = 1f;
     public float gravityWell;
+
+    //Ground raycast variables
     public LayerMask myLayerMask;
+    public LayerMask groundMask;
+    public float groundDist = 1f;
 
     //Various ground checks
     public bool overWell = false;
@@ -32,175 +36,96 @@ public class SimplePhysicsController2D : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
-        //If the player is on the ground
-        if (groundCheckScript.isGrounded == true)
+
+        //If the player can jump, then jump
+        if (canJump == true)
         {
-            //Truly baffled by what could be causing this to not work
-            onGround = true;
-            onBounce = false;
-            onWell = false;
-
-            canJump = true;
-
-            //If the player presses space, increase the upward velocity by the set jump speed
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                thisRigidbody2D.AddForce(Vector2.up * force, ForceMode2D.Impulse);
-                jumpSound.pitch = (Random.Range(.85f, 1.3f));
-                jumpSound.Play();
-            }
+                if (onBounce == false)
+                {
+                    thisRigidbody2D.AddForce(Vector2.up * force, ForceMode2D.Impulse);
+                    jumpSound.pitch = (Random.Range(.85f, 1.3f));
+                    jumpSound.Play();
+                }
 
-            //If the player is over a gravity well, increase the gravity
-            if (overWell == true){
-                thisRigidbody2D.gravityScale = gravityWell;
-            }
-
-            //Otherwise, use normal gravity
-            else { 
-                thisRigidbody2D.gravityScale = gravityOnGround; 
-            }
-            
-        }
-
-        //Same as the last one, just for the bounce pads
-        else if (groundCheckScript.isGroundedBounce == true)
-        {
-
-            onGround = false;
-            onBounce = true;
-            onWell = false;
-
-            canJump = true;
-
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                thisRigidbody2D.AddForce(Vector2.up * bounceForce, ForceMode2D.Impulse);
-                jumpSound.pitch = (Random.Range(.85f, 1.3f));
-                jumpSound.Play();
-            }
-
-            if (overWell == true)
-            {
-                thisRigidbody2D.gravityScale = gravityWell;
-            }
-
-            else
-            {
-                thisRigidbody2D.gravityScale = gravityOnGround;
+                if (onBounce == true)
+                {
+                    thisRigidbody2D.AddForce(Vector2.up * bounceForce, ForceMode2D.Impulse);
+                    jumpSound.pitch = (Random.Range(.85f, 1.3f));
+                    jumpSound.Play();
+                }
             }
         }
 
-        //Same as the last two, just for the gravity wells
-        else if (groundCheckScript.isGroundedGrav == true)
+        //Set various gravity instances
+        if (overWell == true)
         {
-
-            onGround = false;
-            onBounce = false;
-            onWell = true;
-
-            canJump = true;
-
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                thisRigidbody2D.AddForce(Vector2.up * force, ForceMode2D.Impulse);
-                jumpSound.pitch = (Random.Range(.85f, 1.3f));
-                jumpSound.Play();
-            }
-
-            if (overWell == true)
-            {
-                thisRigidbody2D.gravityScale = gravityWell;
-            }
-
-            else
-            {
-                thisRigidbody2D.gravityScale = gravityOnGround;
-            }
-
+            thisRigidbody2D.gravityScale = gravityWell;
         }
 
-        //Same with in-air
-        if (groundCheckScript.isGrounded == false)
+        if (overWell == false && onGround == true)
         {
-
-            onGround = false;
-            onBounce = false;
-            onWell = false;
-
-            canJump = false;
-
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                thisRigidbody2D.AddForce(Vector2.up * 0, ForceMode2D.Impulse);
-            }
-
-            if (overWell == true)
-            {
-                thisRigidbody2D.gravityScale = gravityWell;
-            }
-
-            else
-            {
-                thisRigidbody2D.gravityScale = gravityInAir;
-            }
+            thisRigidbody2D.gravityScale = gravityOnGround;
         }
 
-        //Not on bounce pad
-        if (groundCheckScript.isGroundedBounce == false)
+        if (overWell == false && onGround == false)
         {
-
-            onGround = false;
-            onBounce = false;
-            onWell = false;
-
-            canJump = false;
-
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                thisRigidbody2D.AddForce(Vector2.up * 0, ForceMode2D.Impulse);
-            }
-
-            if (overWell == true)
-            {
-                thisRigidbody2D.gravityScale = gravityWell;
-            }
-
-            else
-            {
-                thisRigidbody2D.gravityScale = gravityInAir;
-            }
+            thisRigidbody2D.gravityScale = gravityInAir;
         }
 
-        //Not on gravity well
-        if (groundCheckScript.isGroundedGrav == false)
-        {
-
-            onGround = false;
-            onBounce = false;
-            onWell = false;
-
-            canJump = false;
-
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                thisRigidbody2D.AddForce(Vector2.up * 0, ForceMode2D.Impulse);
-            }
-
-            if (overWell == true)
-            {
-                thisRigidbody2D.gravityScale = gravityWell;
-            }
-
-            else
-            {
-                thisRigidbody2D.gravityScale = gravityInAir;
-            }
-        }
     }
-
+    
     void FixedUpdate()
     {
+        
+
+        //Determine whether or not the player is on top of a platform using a raycast
+        //If true, player can jump, otherwise the player cannot jump
+
+        Ray groundRay = new Ray(transform.position, Vector2.down);
+        Debug.DrawRay(groundRay.origin, groundRay.direction, Color.red);
+
+        RaycastHit2D grounded = Physics2D.Raycast(groundRay.origin, groundRay.direction, groundDist, groundMask);
+
+        if (Physics2D.Raycast(groundRay.origin, groundRay.direction, groundDist))
+        {
+            if (grounded.collider != null)
+            {
+                if (grounded.collider.gameObject.CompareTag("Ground"))
+                {
+                    onGround = true;
+                    onBounce = false;
+                    onWell = false;
+                    canJump = true;
+                }
+
+                if (grounded.collider.gameObject.CompareTag("Bounce"))
+                {
+                    onGround = false;
+                    onBounce = true;
+                    onWell = false;
+                    canJump = true;
+                }
+
+                if (grounded.collider.gameObject.CompareTag("Gravity"))
+                {
+                    onGround = false;
+                    onBounce = false;
+                    onWell = true;
+                    canJump = true;
+                }
+
+            }
+
+            else
+            {
+                onBounce = false;
+                onGround = false;
+                onWell = false;
+                canJump = false;
+            }
+        }
 
         //Determine whether or not the player is above a gravity well using a raycast
         //If true, set gravity above to gravityWell, if false leave it as is
@@ -253,6 +178,7 @@ public class SimplePhysicsController2D : MonoBehaviour
             }
         }
     }
+    
 
 
 }
