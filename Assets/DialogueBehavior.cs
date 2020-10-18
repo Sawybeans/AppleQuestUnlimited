@@ -7,7 +7,7 @@ public class DialogueBehavior : MonoBehaviour
 {
     public EndingInit end;
 
-    public Animator talking;
+    //public Animator talking;
 
     public SpriteRenderer spriteRender;
     public Sprite dialogueSprite1;
@@ -25,57 +25,57 @@ public class DialogueBehavior : MonoBehaviour
 
     public void Start()
     {
-        talking = gameObject.GetComponent<Animator>();
+        //talking = gameObject.GetComponent<Animator>();
     }
 
     public void Update()
     {
         if (end.end == true)
         {
-            talking.speed = 1;
+            //talking.speed = 1;
 
             if (Input.GetKeyDown(KeyCode.E))
             {
                 if (spriteRender.sprite == dialogueSprite1)
                 {
-                    talking.speed = 0;
+                    //talking.speed = 0;
                     Destroy(hint);
                     spriteRender.sprite = dialogueSprite2;
                 }
 
                 else if (spriteRender.sprite == dialogueSprite2)
                 {
-                    talking.speed = 1;
+                    //talking.speed = 1;
                     spriteRender.sprite = dialogueSprite3;
                 }
 
                 else if (spriteRender.sprite == dialogueSprite3)
                 {
-                    talking.speed = 0;
+                    //talking.speed = 0;
                     spriteRender.sprite = dialogueSprite4;
                 }
 
                 else if (spriteRender.sprite == dialogueSprite4)
                 {
-                    talking.speed = 1;
+                    //talking.speed = 1;
                     spriteRender.sprite = dialogueSprite5;
                 }
 
                 else if (spriteRender.sprite == dialogueSprite5)
                 {
-                    talking.speed = 0;
+                    //talking.speed = 0;
                     spriteRender.sprite = dialogueSprite6;
                 }
 
                 else if (spriteRender.sprite == dialogueSprite6)
                 {
-                    talking.speed = 1;
+                    //talking.speed = 1;
                     spriteRender.sprite = dialogueSprite7;
                 }
 
                 else if (spriteRender.sprite == dialogueSprite7)
                 {
-                    talking.speed = 0;
+                    //talking.speed = 0;
                     spriteRender.sprite = dialogueSprite8;
                 }
 

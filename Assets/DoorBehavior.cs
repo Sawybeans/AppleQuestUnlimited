@@ -9,6 +9,13 @@ public class DoorBehavior : MonoBehaviour
     public AudioSource doorSound;
     public Rigidbody2D protagSpeed;
 
+    public AudioSource scream1;
+    public AudioSource scream2;
+    public AudioSource scream3;
+    public AudioSource scream4;
+    public AudioSource scream5;
+    public int screamRand;
+
     public bool atDoor = false;
     public Transform self;
     public Transform door1;
@@ -187,7 +194,35 @@ public class DoorBehavior : MonoBehaviour
 
         if (other.gameObject.CompareTag("Dead"))
         {
-            
+
+            screamRand = Random.Range(1, 5);
+
+            if (screamRand == 1)
+            {
+                scream1.Play();
+            }
+
+            if (screamRand == 2)
+            {
+                scream2.Play();
+            }
+
+            if (screamRand == 3)
+            {
+                scream3.Play();
+            }
+
+            if (screamRand == 4)
+            {
+                scream4.Play();
+            }
+
+            if (screamRand == 5)
+            {
+                scream5.Play();
+            }
+
+            //Warp to last used door
             if (lastDoor == 2)
             {
                 protagSpeed.velocity = Vector3.zero;
